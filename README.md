@@ -54,14 +54,15 @@ The scenario deployed will show the access to a private VM via a bastion host. I
 - [Test the Connectivity](#test-the-connectivity)
 - [Conclusion](#conclusion)
 
-## Generate the public/private key
+> ## Generate the public/private key
 
 > ### MAC/LINUX
 
 1. Generate ssh-keys for your machine if you don’t have one. As long as an id_rsa and id_rsa.pub key pair is present they can be reused. By default these are stored in ~/.ssh folder. Enter the following command if you are using MAC or Linux Desktop:
 
-> ssh-keygen
-
+```bash
+ssh-keygen
+```
 
 2. Make sure permissions are restricted, sometimes ssh will fail if private keys have permissive permissions.
 
@@ -84,7 +85,7 @@ Wait for the process to finish and save the private key (putty format and openss
 To save the private key in the putty format (.ppk) click on the “Save private key” button. To save the private key to openssh format, navigate to conversions and select “Export OpenSSH key”.
 Keep this application open, we will use it later in the lab.
 
-## Create the network resources
+> ## Create the network resources
 
 Open your browser and navigate to the OCI webUI. Once you login navigate to the Networking section
 
@@ -139,7 +140,7 @@ Edit each Subnet and associate the correct route table. For example, below is a 
 
 ![Route Association](images/Picture16.png)
 
-## Create the Public VM
+> ## Create the Public VM
 
 Navigate to the Compute > Instances section and click on the “Create Instance: Button
 
@@ -154,11 +155,11 @@ In the puttygen that we used earlier, copy the public key and paste it in the Ke
 
 At this point, we have all the mandatory information and we are ready to click the “Create” button
 
-## Create the Private VM
+> ## Create the Private VM
 
 Follow the same steps and create also the Private VM
 
-## Adjust the security to permit connectivity
+> ## Adjust the security to permit connectivity
 
 At this step, we will adjust the security to permit ssh connection from the Internet for the Public VM and from that VM we will connect to the private VM.
 
@@ -199,7 +200,7 @@ Navigate to the Networking>Virtual Cloud Networks>{Your VCN}>Network Security Gr
 
 Please notice that the NSG is associated with the VM
 
-## Test the Connectivity
+> ## Test the Connectivity
 
 Connect to the Public IP address of the public VM and create a file called training.key using your favorite Linux editor (I used nano in the screenshot):
 
@@ -222,7 +223,9 @@ Notice that we are getting an error (file permissions for the key are too open
 
 Adjust the security for the key:
 
-> chmod 600 training.key
+```bash
+chmod 600 training.key
+```
 
 Connect again
 
@@ -230,7 +233,7 @@ Connect again
 
 Notice the change in the hostname prompt. Now you are connected to the private VM
 
-## Conclusion
+> ## Conclusion
 
 By Completing this lab you should have learned:
 
