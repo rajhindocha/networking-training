@@ -46,12 +46,12 @@ The scenario deployed will show the access to a private VM via a bastion host. I
 
 ## Section
 
-- [Generate the public/private key](#generate-the-public/private-key)
+- [Generate the public/private key](#generate-the-publicprivate-key)
 - [Create the network resources](#create-the-network-resources)
 - [Create the Public VM](#create-the-public-vm)
 - [Create the Private VM](#create-the-private-vm)
-- [Adjust the security to permit connectivity](#adjust-the-security-to-permit-conncetivity)
-- [Test Connectivity](#test-connectivity)
+- [Adjust the security to permit connectivity](#adjust-the-security-to-permit-connectivity)
+- [Test the Connectivity](#test-the-connectivity)
 - [Conclusion](#conclusion)
 
 ## Generate the public/private key
@@ -75,11 +75,11 @@ chmod 0644 ~/.ssh/id_rsa.pub
 
 Open puttygen (or a similar tool), make sure that the key is RSA and the length of the key is 2048 and hit generate:
 
-![Generate Key](Picture1.png)
+![Generate Key](images/Picture1.png)
 
 Wait for the process to finish and save the private key (putty format and openssh format).
 
-![Save Key](Picture2.png)
+![Save Key](images/Picture2.png)
 
 To save the private key in the putty format (.ppk) click on the “Save private key” button. To save the private key to openssh format, navigate to conversions and select “Export OpenSSH key”.
 Keep this application open, we will use it later in the lab.
@@ -88,69 +88,69 @@ Keep this application open, we will use it later in the lab.
 
 Open your browser and navigate to the OCI webUI. Once you login navigate to the Networking section
 
-![Console](Picture3.png)
+![Console](images/Picture3.png)
 
-![Networking](Picture4.png)
+![Networking](images/Picture4.png)
 
 Navigate to the VCN section and select Create VCN
 
-![Create VCN](Picture5.png)
+![Create VCN](images/Picture5.png)
 
 Put the name, select compartment and the CIDR Block. I disabled the DNS resolution inside the VCN
 
-![VCN Form](Picture6.png)
+![VCN Form](images/Picture6.png)
 
 Click on the “Create Subnet” button
 
-![Create Subnet](Picture7.png)
+![Create Subnet](images/Picture7.png)
 
 Click the “Create Subnet” button and we will configure the Public Subnet.
 Fill the name, select “Regional”, fill the “CIDR Block”. I will use for now the Default route table and the Default Security List.
 
-![Public Subnet](Picture8.png)
+![Public Subnet](images/Picture8.png)
 
 Perform the same Steps to create the Private Subnet
 
-![Private Subnet](Picture9.png)
+![Private Subnet](images/Picture9.png)
 
 The resulting 2 subnets will look like this
 
-![Subnets](Picture10.png)
+![Subnets](images/Picture10.png)
 
 Navigate to the Internet Gateway section and create a new item
 
-![Internet Gateway](Picture11.png)
+![Internet Gateway](images/Picture11.png)
 
 At this point, we want to create a routing table for each subnet. Navigate at the “route Tables” section and click the “Create Route Table” button
 
-![Route Table](Picture13.png)
+![Route Table](images/Picture13.png)
 
 We will create the route table for the Public Subnet
 
-![Route Table](Picture14.png)
+![Public RT](images/Picture14.png)
 
 Notice that we created a default route that uses the Internet Gateway.
 
 Create a route table for the private subnet. This table will be empty, and it will be used in a future lab.
 
-![Route Table](Picture15.png)
+![Private RT](images/Picture15.png)
 
 Edit each Subnet and associate the correct route table. For example, below is a screenshot for the public subnet
 
-![Route Table](Picture16.png)
+![Route Association](images/Picture16.png)
 
-## Create the Compute VM
+## Create the Public VM
 
 Navigate to the Compute > Instances section and click on the “Create Instance: Button
 
-![Route Table](Picture17.png)
+![Create Instance](images/Picture17.png)
 
 Fill in the Name, choose a VM shape (considering that we are doing a test, provision a small shape). Now we reach the Networking details: select the VCN, select the subnet (the difference between the public VM and the private VM is the subnet in which they will be provisioned). For the Public VM choose “Assign a Public IP Address”.
 In the puttygen that we used earlier, copy the public key and paste it in the Key section of the OCI webUI
 
-![Route Table](Picture18.png)
+![Copy SSH Key](images/Picture18.png)
 
-![Route Table](Picture19.png)
+![Paste Key](images/Picture19.png)
 
 At this point, we have all the mandatory information and we are ready to click the “Create” button
 
@@ -166,28 +166,28 @@ Navigate to the Networking>Virtual Cloud Networks>{Your VCN}>Security Lists and 
 
 Remove the ssh access
 
-![Route Table](Picture20.png)
+![SSH access](images/Picture20.png)
 
 Navigate to the Networking>Virtual Cloud Networks>{Your VCN}>Network Security Groups and create a NSG for the public VM:
 Fill in the Name and click next
 
-![Route Table](Picture21.png)
+![NSG](images/Picture21.png)
 
 Add the following rules and click **Create**
 
-![Route Table](Picture22.png)
+![Rules in NSG](images/Picture22.png)
 
 At this point, the public VM is reachable via SSH from the Internet and it is allowed to initiate any connection.
 
 Create a second NSG for the private vm with the same rules.
 After the creation you will have two NSGs
 
-![Route Table](Picture23.png)
+![Private NSG](images/Picture23.png)
 
 To use them, we need to associate them with the VMs.
 Navigate to Compute > Instances > {Public VM} and edit the NSG section
 
-![Route Table](Picture24.png)
+![Associate NSG](images/Picture24.png)
 
 Add the configured NSG for the public VM.
 
@@ -195,7 +195,7 @@ Repeat the step for the private instance.
 
 Navigate to the Networking>Virtual Cloud Networks>{Your VCN}>Network Security Groups, click on each NSG and check the VNIC section
 
-![Route Table](Picture25.png)
+![VNIC section](images/Picture25.png)
 
 Please notice that the NSG is associated with the VM
 
@@ -207,18 +207,18 @@ Connect to the Public IP address of the public VM and create a file called train
 
 Paste the private key (the one generated at the beginning of the lab) information
 
-![Route Table](Picture26.png)
+![Paste Key](images/Picture26.png)
 
 Hit **CTRL+X** to close the file. It will ask you if you want to save it, Press **Y** then press ENTER
 
 Connect to the private VM
 
-![Route Table](Picture29.png)
+![SSH](images/Picture29.png)
 
 Accept the fingerprint.
 Notice that we are getting an error (file permissions for the key are too open
 
-![Route Table](Picture30.png)
+![Error](images/Picture30.png)
 
 Adjust the security for the key:
 
@@ -226,7 +226,7 @@ Adjust the security for the key:
 
 Connect again
 
-![Route Table](Picture31.png)
+![SSH again](images/Picture31.png)
 
 Notice the change in the hostname prompt. Now you are connected to the private VM
 
