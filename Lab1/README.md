@@ -42,8 +42,6 @@ Keep in mind that this is a lab, so choose appropriate VM shapes. Use a Naming C
 
 The scenario deployed will show the access to a private VM via a bastion host. In the lab we will use relaxed security and will permit ssh access to the bastion from everywhere (0.0.0.0/0). In a production environment, this will be restricted to the authorized Public IP addresses.
 
-
-
 ## Section
 
 - [Generate the public/private key](#generate-the-publicprivate-key)
