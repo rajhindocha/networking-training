@@ -271,5 +271,4 @@ We can see the JavaScript challenge that was enforced by the WAF Policy. Beyond 
 
 We can check the logs for the JavaScript challenge from the Logs section on the left side panel as well.
 
-
-To learn more about Oracle WAF click [here](#https://docs.cloud.oracle.com/en-us/iaas/Content/WAF/Concepts/overview.htm)
+To learn more about Oracle WAF click [here](https://docs.cloud.oracle.com/en-us/iaas/Content/WAF/Concepts/overview.htm)
