@@ -211,7 +211,7 @@ By fixing the query parameter to ‘))-- and running the URL on a browser again 
 
 ![sqlattack](images/sqlattack.png)
 
-When we try the same query parameter on the WAF policy protected end-point i.e accessing web application using domain name *[http://<your-domain-name>/rest/products/search?q='))--](#)*, then we get the following error page
+When we try the same query parameter on the WAF policy protected end-point i.e accessing web application using domain name *[http://\<your-domain-name>/rest/products/search?q='))--](#)*, then we get the following error page
 
 ![sqlattackblocked](images/sqlattackblocked.png)
 
