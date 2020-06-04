@@ -155,7 +155,7 @@ Publishing of these changes takes around 10 mins. Once the changes are published
 
 ## Test the Access Rules
 
-We can test the first access rule of the URL path y opening a browser to visit www.\<domain>/foo. This should take you to an error page as shown in the screenshot below
+We can test the first access rule of the URL path y opening a browser to visit [www.\<domain>.foo](#). This should take you to an error page as shown in the screenshot below
 
 ![foourl](images/foourl.png)
 
