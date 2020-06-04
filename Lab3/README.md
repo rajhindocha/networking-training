@@ -1,4 +1,4 @@
-# Lab 2: IPSec VPN
+# Lab 3: VCN Peering
 
 ## Introduction
 
