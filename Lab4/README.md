@@ -109,7 +109,7 @@ On the OCI console, navigate to WAF Policy by clicking on the hamburger menu -> 
 
 Click on Create WAF Policy. Enter the domain name and URI for the web application
 
-![policy](images/policy.png)
+![wafpolicy](images/wafpolicy.png)
 
 Once WAF policy is created a property called CNAME target gets created. It consists of a hyphenated version of the domain name
 
